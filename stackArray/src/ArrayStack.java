@@ -36,7 +36,7 @@ public class ArrayStack<T> implements StackADT<T>{
     @Override
     public T pop() {
         if (isEmpty()) {
-            throw new RuntimeException("Imposible to pop an element when the stack is empty");
+            throw new RuntimeException("Impossible to pop an element when the stack is empty");
         }
         top--;
         T result = this.stack[this.top];
@@ -47,7 +47,7 @@ public class ArrayStack<T> implements StackADT<T>{
     @Override
     public T peek() {
         if (isEmpty()) {
-            throw new RuntimeException("Imposible to peek an element when the stack is empty");
+            throw new RuntimeException("Impossible to peek an element when the stack is empty");
         }
         return this.stack[this.top-1];
     }
