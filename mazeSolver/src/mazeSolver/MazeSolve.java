@@ -29,10 +29,8 @@ public class MazeSolve {
             pos = stack.pop();
             maze.tryPosition(pos.getx(), pos.gety());
             if (pos.getx() == maze.getRows() - 1 && pos.gety() == maze.getColumns() - 1) {
-                maze.markPath(pos.getx(), pos.gety());
                 done = true;
             } else {
-                maze.markPath(pos.getx(), pos.gety());
                 push_new_pos(pos.getx() - 1, pos.gety(), stack);
                 push_new_pos(pos.getx() + 1, pos.gety(), stack);
                 push_new_pos(pos.getx(), pos.gety() - 1, stack);
