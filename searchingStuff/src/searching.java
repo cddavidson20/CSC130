@@ -6,9 +6,9 @@ public class searching {
         int[] array = {1, 2, 3, 4, 4, 5, 6, 7, 8, 23};
         int length = array.length -1;
 
-        binarySearch(array, 7);
+        binarySearch(array, 2);
 
-        int returnVal = recurisveBinarySearch(array, 0, length-1 , 7);
+        int returnVal = recursiveBinarySearch(array, 0, length-1 , 7);
         System.out.print("Found the value at: " + returnVal);
     }
 
@@ -21,28 +21,26 @@ public class searching {
                 first = middle + 1;
             } else if (sortedArray[middle] == number) {
                 System.out.printf(number + " found at location %d %n", middle);
-                break;
+                return;
             } else {
                 last = middle - 1;
             }
             middle = (first + last) / 2;
         }
-        if (first > last) {
-            System.out.println(number + " is not present in the list.\n");
-        }
+        System.out.println(number + " is not present in the list.\n");
     }
 
-     private static int recurisveBinarySearch(int arr[], int l, int r, int x) {
-        if (r >= l) {
-            int mid = l + (r - l) / 2;
+     private static int recursiveBinarySearch(int arr[], int left, int right, int x) {
+        if (right >= left) {
+            int mid = left + (right - left) / 2;
 
             if (arr[mid] == x){
                 return mid;
             }
              if (arr[mid] > x)
-                 return recurisveBinarySearch(arr, l, mid - 1, x);
+                 return recursiveBinarySearch(arr, left, mid - 1, x);
 
-             return recurisveBinarySearch(arr, mid + 1, r, x);
+             return recursiveBinarySearch(arr, mid + 1, right, x);
          }
          return -1;
      }
