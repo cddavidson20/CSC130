@@ -35,6 +35,8 @@ public class testMain {
         int charVal = charFinder(charA);
         System.out.println("A occurs " + charVal + " times in the char array");
 
+        int genericNum = genericFinder(array, 5);
+        System.out.println("Generic Finder:" + genericNum);
     }
 
     private static void swap(){
@@ -76,6 +78,16 @@ public class testMain {
 
         for (int i = 0; i < charArray.length; i++){
             if (charArray[i] == 'a')
+                count++;
+        }
+        return count;
+    }
+
+    private static int genericFinder(T[] array, T passedIn){
+        int count = 0;
+
+        for (int i = 0; i < array.length; i++){
+            if (array[i] == passedIn)
                 count++;
         }
         return count;
