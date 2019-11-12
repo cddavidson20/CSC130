@@ -18,7 +18,7 @@ public class divideConquerMain {
     //return the largest value in an array
     private static int findLargest(int[] a) {
         int max = a[0];
-        for(int i = 1; i < a.length;i++) {
+        for(int i = 1; i < a.length; i++) {
             if(a[i] > max) {
                 max = a[i];
             }
