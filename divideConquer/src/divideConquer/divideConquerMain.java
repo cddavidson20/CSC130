@@ -1,5 +1,7 @@
 package divideConquer;
 
+import java.util.Arrays;
+
 public class divideConquerMain {
     public static void main(String[] args) {
         System.out.println("Started");
@@ -8,12 +10,21 @@ public class divideConquerMain {
         //which nth largest element
         int n = 8;
 
+        //merged approach
         int theNth = findNth(array1, array2, array1.length, array2.length, n);
+        System.out.println("The " + n + "th largest is: " + theNth);
 
-        System.out.print("The " + n + "th largest is: " + theNth);
+        int k = 5;
+
+        //recursive approach
+        int theKth = findKth(array1, array1.length, array2, array2.length, k);
+        if (theKth == -1)
+            System.out.println("Invalid query");
+        else
+            System.out.println("The " + k + "th largest is: " + theKth);
     }
 
-    //return the largest value in an array
+    //sorted and merged array approach
     private static int findNth(int[] a, int[] b, int aLen, int bLen, int n) {
 
         int [] sorted = new int[aLen + bLen];
@@ -34,5 +45,39 @@ public class divideConquerMain {
             sorted[k++] = b[j++];
 
         return sorted[n - 1];
+    }
+
+    public static int findKth(int arr1[], int m, int arr2[], int n, int k) {
+        if (k > (m + n) || k < 1)
+            return -1;
+
+        // let m > n
+        if (m > n)
+            return findKth(arr2, n, arr1, m, k);
+
+        // if arr1 is empty returning k-th element of arr2
+        if (m == 0)
+            return arr2[k - 1];
+
+        // if k = 1 return minimum of first
+        // two elements of both arrays
+        if (k == 1)
+            return Math.min(arr1[0], arr2[0]);
+
+        // now the divide and conquer part
+        int i = Math.min(m, k / 2);
+        int j = Math.min(n, k / 2);
+
+        if (arr1[i - 1] > arr2[j - 1]) {
+            // Now we need to find only k-j th element
+            // since we have found out the lowest j
+            int temp[] = Arrays.copyOfRange(arr2, j, n);
+            return findKth(arr1, m, temp, n - j, k - j);
+        }
+
+        // Now we need to find only k-i th element
+        // since we have found out the lowest i
+        int temp[] = Arrays.copyOfRange(arr1, i, m);
+        return findKth(temp, m - i, arr2, n, k - i);
     }
 }
