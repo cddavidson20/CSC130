@@ -16,7 +16,7 @@ public class divideConquerMain {
 
         int k = 5;
 
-        //recursive approach
+        //recursive approach assuming positive array values
         int theKth = findKth(array1, array1.length, array2, array2.length, k);
         if (theKth == -1)
             System.out.println("Invalid query");
@@ -47,7 +47,7 @@ public class divideConquerMain {
         return sorted[n - 1];
     }
 
-    public static int findKth(int arr1[], int m, int arr2[], int n, int k) {
+    private static int findKth(int[] arr1, int m, int[] arr2, int n, int k) {
         if (k > (m + n) || k < 1)
             return -1;
 
@@ -69,15 +69,15 @@ public class divideConquerMain {
         int j = Math.min(n, k / 2);
 
         if (arr1[i - 1] > arr2[j - 1]) {
-            // Now we need to find only k-j th element
-            // since we have found out the lowest j
-            int temp[] = Arrays.copyOfRange(arr2, j, n);
+            //Copy the array with a smaller increment to
+            // recursively call against new array
+            int[] temp = Arrays.copyOfRange(arr2, j, n);
             return findKth(arr1, m, temp, n - j, k - j);
         }
 
-        // Now we need to find only k-i th element
-        // since we have found out the lowest i
-        int temp[] = Arrays.copyOfRange(arr1, i, m);
+        //Copy the array with a smaller increment to
+        // recursively call against new array
+        int[] temp = Arrays.copyOfRange(arr1, i, m);
         return findKth(temp, m - i, arr2, n, k - i);
     }
 }
