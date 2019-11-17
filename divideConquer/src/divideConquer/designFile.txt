@@ -1,0 +1,9 @@
+My first thought to solve this quickly would be to merge the two arrays and then figure out quickly what element is the
+nth largest. The downside to this approach is that by creating a sorted new array, we need to loop through both arrays
+causing loss in efficiency.
+The second approach involves recursion. First we check for some base cases like if we're looking for the smallest, where
+we can just return a comparision between the first elements, or if the kth element is not in the array we return -1.
+Next we split the arrays so that we can divide and conquer them. We split them in half and copying the array and
+incrementally get closer to the value we are searching for. Each time we split the array, we need to see if we found the
+value. Next we need to check if the array we are looking at is empty. If it is the we return the kth from the other
+array.

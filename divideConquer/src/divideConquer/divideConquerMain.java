@@ -47,7 +47,9 @@ public class divideConquerMain {
         return sorted[n - 1];
     }
 
+    //recursive approach using divide and conquer
     private static int findKth(int[] arr1, int m, int[] arr2, int n, int k) {
+        //if the element is not in the arrays
         if (k > (m + n) || k < 1)
             return -1;
 
